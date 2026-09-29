@@ -1019,7 +1019,7 @@ namespace CHCMHandler
 
 					if (total > 0) {
 						config.push_back(patch->prependPageNumber ? fmt::format("{}. {}", std::to_string(Idx), page) : page);
-						config.push_back(fmt::format("{}/{} - {}% Completed", found, total, GetPercentage(found, total)));
+						config.push_back(fmt::format("{}/{}: {}% completato", found, total, GetPercentage(found, total)));
 					}
 				}
 			}
