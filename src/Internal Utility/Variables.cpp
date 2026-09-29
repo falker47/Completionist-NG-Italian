@@ -430,22 +430,22 @@ namespace CVariables
 			V_PrefixChoice_Occupied = prop->GetSInt();
 		}
 
-		V_CrosshairTag_New = "Need It!";
+		V_CrosshairTag_New = "Da ottenere!";
 		if (const auto* prop = VariablesAPI::GetProperty("State_OverRide_N_Name_String")) {
 			V_CrosshairTag_New = prop->GetString();
 		}
 
-		V_CrosshairTag_Found = "Got It!";
+		V_CrosshairTag_Found = "Ottenuto!";
 		if (const auto* prop = VariablesAPI::GetProperty("State_OverRide_G_Name_String")) {
 			V_CrosshairTag_Found = prop->GetString();
 		}
 
-		V_CrosshairTag_Displayable = "Displayable!";
+		V_CrosshairTag_Displayable = "Esponibile!";
 		if (const auto* prop = VariablesAPI::GetProperty("State_OverRide_Displayable_Name_String")) {
 			V_CrosshairTag_Displayable = prop->GetString();
 		}
 
-		V_CrosshairTag_Displayed = "Displayed!";
+		V_CrosshairTag_Displayed = "Esposto!";
 		if (const auto* prop = VariablesAPI::GetProperty("State_OverRide_Displayed_Name_String")) {
 			V_CrosshairTag_Displayed = prop->GetString();
 		}
