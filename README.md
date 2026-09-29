@@ -1,3 +1,19 @@
+# Italian localization fork
+
+This repository is the public corresponding source for the Italian localization distributed on Nexus Mods as **Completionist - Skyrim Completion Tracker (NG) - Traduzione Italiana**.
+
+The fork is based on **Completionist NG** by Faen90 / Faen668. The original project is available at https://github.com/Faen668/Completionist-NG.
+
+Italian localization modifications: Copyright © 2026 Maurizio Falconi.
+
+The project is licensed under the **GNU General Public License v3.0 or later (GPL-3.0-or-later)** together with the upstream **Modding Exception** and **GPL-3.0 Linking Exception (with Corresponding Source)**. The complete terms are in [LICENSE](LICENSE) and [EXCEPTIONS.md](EXCEPTIONS.md).
+
+This program is distributed in the hope that it will be useful, but **WITHOUT ANY WARRANTY**; without even the implied warranty of **MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE**. See the GNU General Public License for details.
+
+The Italian DLL localization is represented in source by the localized user-facing fallback strings in `src/Internal Utility/Variables.cpp` and the completion summary format in `src/Internal Utility/MCMHandler.cpp`.
+
+---
+
 # Completionist NG
 
 **Completionist - Skyrim Completion Tracker (NG)**
