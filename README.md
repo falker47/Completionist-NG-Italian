@@ -1,257 +1,245 @@
-# Italian localization fork
+# Completionist NG — Traduzione italiana / Italian Localization
 
-This repository is the public corresponding source for the Italian localization distributed on Nexus Mods as **Completionist - Skyrim Completion Tracker (NG) - Traduzione Italiana**.
+**Fork sorgente della localizzazione italiana di Completionist NG per Skyrim Special Edition e Anniversary Edition.**
 
-The fork is based on **Completionist NG** by Faen90 / Faen668. The original project is available at https://github.com/Faen668/Completionist-NG.
+**English:** This repository contains the source fork for Italian-localized text in the Completionist NG native plugin. The original mod and the separate Italian translation package are available on Nexus Mods. This repository is not a ready-to-install translation package.
 
-Italian localization modifications: Copyright © 2026 Maurizio Falconi.
+**Collegamenti principali**
 
-The project is licensed under the **GNU General Public License v3.0 or later (GPL-3.0-or-later)** together with the upstream **Modding Exception** and **GPL-3.0 Linking Exception (with Corresponding Source)**. The complete terms are in [LICENSE](LICENSE) and [EXCEPTIONS.md](EXCEPTIONS.md).
+- [Scarica la traduzione italiana — Nexus Mods](https://www.nexusmods.com/skyrimspecialedition/mods/192318)
+- [Completionist NG originale — Nexus Mods](https://www.nexusmods.com/skyrimspecialedition/mods/46358)
+- [Codice sorgente originale — Faen668/Completionist-NG](https://github.com/Faen668/Completionist-NG)
+- [Sorgenti del fork italiano — falker47/Completionist-NG-Italian](https://github.com/falker47/Completionist-NG-Italian)
 
-This program is distributed in the hope that it will be useful, but **WITHOUT ANY WARRANTY**; without even the implied warranty of **MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE**. See the GNU General Public License for details.
+## Il progetto
 
-The Italian DLL localization is represented in source by the localized user-facing fallback strings in `src/Internal Utility/Variables.cpp` and the completion summary format in `src/Internal Utility/MCMHandler.cpp`.
+**Completionist NG**, sviluppato da **Faen90 / Faen668** e dai contributori del progetto originale, è una mod per Skyrim che permette di monitorare missioni, oggetti, collezionabili e altre attività di completamento attraverso un'interfaccia integrata nel gioco.
+
+Questo repository è un fork realizzato per rendere disponibili le modifiche al codice C++ relative alla localizzazione italiana della DLL.
+
+La traduzione distribuita separatamente su Nexus Mods è curata da **falker47 (Maurizio Falconi)** e si rivolge ai giocatori che utilizzano Skyrim in italiano.
+
+Il fork non introduce un nuovo sistema di tracciamento e non rivendica lo sviluppo delle funzionalità di Completionist NG. Il codice originale e la relativa evoluzione appartengono al progetto upstream.
+
+### Due risorse con scopi diversi
+
+| Risorsa | Contenuto |
+|---|---|
+| Completionist NG originale | Mod e funzionalità di tracciamento sviluppate dal progetto upstream |
+| Traduzione italiana su Nexus | Pacchetto installabile di localizzazione per la versione supportata |
+| Questo repository GitHub | Sorgenti upstream e modifiche C++ del fork italiano, con documentazione di provenienza e licenza |
+
+**Per utilizzare la traduzione in gioco occorre scaricare il pacchetto Nexus.** Il solo checkout di questo repository non costituisce un'installazione della traduzione.
+
+## Installazione
+
+La traduzione italiana pubblicata come versione **1.0** è destinata a **Completionist NG 5.0.0.4**.
+
+1. Installa [Completionist NG originale](https://www.nexusmods.com/skyrimspecialedition/mods/46358) con il tuo mod manager.
+2. Se utilizzi [Completionist Addons](https://www.nexusmods.com/skyrimspecialedition/mods/112406), considera che le integrazioni italiane incluse nella traduzione sono basate sulla versione **3.0.0**. Non presumere la compatibilità con versioni successive.
+3. Scarica dalla [pagina Nexus della traduzione italiana](https://www.nexusmods.com/skyrimspecialedition/mods/192318) il pacchetto principale **Completionist Skyrim Completion Tracker ITA**.
+4. Installa la traduzione dopo la mod originale e, quando presenti, dopo gli Addons compatibili. In caso di conflitti relativi ai file tradotti, lascia prevalere quelli della traduzione italiana.
+5. Abilita `Completionist ITA.esp` e assicurati che venga caricato dopo `Completionist.esp`.
+
+Completionist Addons è opzionale: la traduzione principale può essere utilizzata senza installarlo.
+
+Per i requisiti e la configurazione della mod originale, consulta la sua pagina Nexus. Le istruzioni di installazione riportate qui derivano dalla documentazione della distribuzione italiana e non costituiscono una nuova verifica in gioco.
+
+## Compatibilità e requisiti
+
+La mod originale richiede:
+
+- **Skyrim Special Edition / Anniversary Edition**, in una versione supportata dalla release originale.
+- **SKSE64**, compatibile con il runtime Skyrim installato.
+- **Address Library for SKSE Plugins**.
+- **PapyrusUtil SE**.
+- **SkyUI**, utilizzato per l'interfaccia MCM.
+
+Questi sono requisiti della mod originale, non nuove dipendenze introdotte dal codice italiano.
+
+La pagina Nexus della traduzione documenta una release candidate testata in **Skyrim Anniversary Edition**, comprendente verifiche di MCM, missioni, notifiche e stati del tracker. La stessa pagina indica che la build finale contiene ulteriori stringhe localizzate nella DLL.
+
+Non è disponibile in questo repository una matrice di test indipendente per le singole versioni del runtime Skyrim, di SKSE o per Skyrim VR.
+
+**Le impostazioni di compilazione per SE, AE e VR presenti nel progetto C++ non dimostrano, da sole, la compatibilità delle relative build con il pacchetto italiano pubblicato.**
+
+## Cosa viene tradotto
+
+La distribuzione Nexus descrive la localizzazione delle seguenti componenti:
+
+- Menu MCM, sezioni e pagine del tracker.
+- Stati di completamento e raccolta.
+- Tooltip e altri testi dell'interfaccia.
+- Notifiche e messaggi visualizzati durante il gioco.
+- Stringhe presenti negli script Papyrus.
+- Testi generati direttamente dalla DLL.
+- Titoli di missioni vanilla e DLC.
+- Integrazioni selezionate di Completionist Addons 3.0.0.
+
+Questo elenco descrive **l'ambito dichiarato del pacchetto Nexus**, non l'insieme delle traduzioni presenti nel checkout GitHub.
+
+### Modifiche C++ verificabili
+
+Rispetto al commit upstream utilizzato come base della localizzazione, il fork contiene cinque sostituzioni testuali in due file.
+
+**`src/Internal Utility/Variables.cpp`**
+
+| Testo originale | Testo italiano |
+|---|---|
+| `Need It!` | `Da ottenere!` |
+| `Got It!` | `Ottenuto!` |
+| `Displayable!` | `Esponibile!` |
+| `Displayed!` | `Esposto!` |
+
+Queste stringhe sono valori predefiniti utilizzati dagli indicatori di stato degli oggetti nell'interfaccia.
+
+**`src/Internal Utility/MCMHandler.cpp`**
+
+Il formato del riepilogo di completamento passa da:
+
+`{}/{} - {}% Completed`
+
+a:
+
+`{}/{}: {}% completato`
+
+Le modifiche riguardano testo visualizzato, senza introdurre nuova logica di tracciamento rispetto alla revisione upstream di riferimento.
+
+### Limiti del contenuto presente su GitHub
+
+La struttura `src/Papyrus/Release/` deriva dal progetto originale e non rappresenta integralmente il pacchetto italiano disponibile su Nexus.
+
+In particolare:
+
+- Il file `src/Papyrus/Release/Interface/Translations/completionist_italian.txt` presente nel repository coincide con il corrispondente file inglese.
+- Gli script Papyrus presenti nel checkout conservano i testi upstream.
+- Il repository contiene `Completionist.esp`, ma non il distinto `Completionist ITA.esp` descritto dalla distribuzione italiana.
+- Non è presente un archivio installabile della traduzione italiana né una release GitHub che lo contenga.
+
+Per questo motivo, **il repository documenta le modifiche sorgente della DLL, ma non costituisce una riproduzione integrale dei file localizzati distribuiti su Nexus**.
+
+La corrispondenza tra la DLL contenuta nel pacchetto Nexus e una compilazione ottenuta da questo sorgente non è attestata da una build riproducibile verificata nel repository.
+
+## Funzionalità di Completionist NG
+
+Le funzionalità seguenti appartengono al **progetto originale** e non sono state introdotte dal fork italiano.
+
+### Missioni e progressione
+
+Completionist permette di monitorare le missioni supportate di Skyrim, comprese le quest principali, secondarie, delle fazioni e dei DLC.
+
+Il framework comprende la gestione di missioni ripetibili e di condizioni particolari di completamento, oltre al supporto per contenuti aggiuntivi attraverso i relativi dati di tracciamento.
+
+### Oggetti e collezionabili
+
+Il sistema originale monitora diverse categorie di contenuti, tra cui libri, armi, armature, oggetti unici, luoghi, urli e altri elementi supportati.
+
+Il tracciamento può essere esteso mediante patch e dati aggiuntivi compatibili.
+
+### Interfaccia MCM
+
+L'integrazione con SkyUI offre pagine per consultare gli elementi monitorati, visualizzare gli stati di completamento e configurare le funzioni disponibili.
+
+La struttura e il comportamento delle pagine dipendono dal progetto upstream e dalle patch effettivamente installate.
+
+### Inventario e indicatori contestuali
+
+Completionist include integrazioni con l'inventario e con il testo contestuale visualizzato nel mirino (*crosshair tags*).
+
+Queste funzioni permettono di mostrare informazioni relative alla raccolta e, nelle configurazioni supportate, allo stato degli oggetti esponibili.
+
+Le quattro stringhe localizzate in `Variables.cpp` appartengono proprio a questo ambito.
+
+Per l'elenco completo e aggiornato delle funzionalità, delle integrazioni e delle limitazioni, consulta la [documentazione della mod originale](https://www.nexusmods.com/skyrimspecialedition/mods/46358).
+
+## Sorgenti e compilazione
+
+Il progetto conserva la struttura C++ di Completionist NG.
+
+I principali file di configurazione sono:
+
+- [`CMakeLists.txt`](CMakeLists.txt) — definizione del progetto e delle dipendenze native.
+- [`CMakePresets.json`](CMakePresets.json) — preset di configurazione per le diverse varianti Skyrim.
+- [`vcpkg.json`](vcpkg.json) — manifest delle dipendenze gestite con vcpkg.
+- [`!Update.ps1`](!Update.ps1) — script PowerShell utilizzato dal processo di generazione e dalle operazioni successive alla compilazione.
+
+### Ambiente previsto
+
+La configurazione presente nel repository richiede o prevede:
+
+- Windows e **Visual Studio 2022**, secondo il generatore indicato nei preset.
+- **CMake 3.21** o successivo.
+- **C++23**.
+- **vcpkg**, con variabile d'ambiente `VCPKG_ROOT`.
+- **CommonLibSSE-NG**, tramite `CommonLibSSEPath`.
+- **DKUtil**, tramite `DKUtilPath`.
+- **spdlog** e **xbyak**, dichiarati nel manifest vcpkg.
+- **PowerShell**, invocato durante la configurazione e dopo la build.
+
+Sono definiti i preset `AE`, `SE`, `VR`, `ALL`, `PRE-AE` e `FLATRIM`.
+
+La compilazione è configurata per essere eseguita fuori dalla directory sorgente. Lo script `!Update.ps1` genera l'elenco dei sorgenti e gestisce anche operazioni successive alla build.
+
+Queste informazioni derivano direttamente dai file di configurazione presenti nel repository.
+
+### Stato delle verifiche
+
+Non sono presenti workflow GitHub Actions, suite di test automatizzati o release binarie in questo fork.
+
+Non viene pertanto dichiarata una compilazione riuscita o una procedura di build riproducibile certificata. Chi intende ricompilare il progetto deve predisporre le dipendenze richieste ed esaminare gli script di build prima dell'esecuzione.
+
+La versione `7.0.0.1` presente nei manifest CMake/vcpkg è un identificativo della configurazione sorgente e **non deve essere confusa** con la versione Completionist 5.0.0.4 a cui è destinata la traduzione Nexus.
+
+## Licenza e attribuzione
+
+Il repository contiene il testo della **GNU General Public License versione 3** e le eccezioni riprese dal progetto upstream.
+
+La documentazione del progetto dichiara l'applicazione della **GPL-3.0-or-later**, insieme alle seguenti eccezioni:
+
+- **Modding Exception**.
+- **GPL-3.0 Linking Exception (with Corresponding Source)**.
+
+Per i termini completi consulta:
+
+- [`LICENSE`](LICENSE)
+- [`EXCEPTIONS.md`](EXCEPTIONS.md)
+- [`README.txt`](README.txt), che conserva l'avviso di provenienza e licenza della localizzazione.
+
+Le eccezioni contengono disposizioni specifiche per il collegamento con codice modificato e librerie di modding, inclusi requisiti relativi al sorgente corrispondente.
+
+Non sostituiscono il testo integrale della GPL né autorizzano automaticamente la redistribuzione di tutti gli asset di terzi.
+
+Le condizioni relative ai materiali del gioco, alle risorse di altri autori e ai pacchetti Nexus devono essere considerate separatamente, secondo i diritti e le autorizzazioni applicabili.
+
+### Copyright e crediti
+
+**Progetto originale**
+
+Completionist NG — Copyright © Faen90 / Faen668 e rispettivi contributori.
+
+Sorgente originale: https://github.com/Faen668/Completionist-NG
+
+**Localizzazione italiana**
+
+Modifiche italiane — Copyright © 2026 Maurizio Falconi (`falker47`).
+
+Distribuzione: https://www.nexusmods.com/skyrimspecialedition/mods/192318
+
+**Framework e componenti utilizzati dal progetto originale**
+
+- [CommonLibSSE-NG](https://github.com/alandtse/CommonLibSSE-NG)
+- [Skyrim Script Extender (SKSE)](https://skse.silverlock.org/)
+- DKUtil, spdlog e le altre dipendenze indicate nei file di build.
+- SkyUI, Address Library e PapyrusUtil, secondo i requisiti della mod originale.
+
+I nomi, i marchi e i contenuti di *The Elder Scrolls V: Skyrim* appartengono ai rispettivi titolari.
+
+## Esclusione di garanzia
+
+This program is distributed in the hope that it will be useful, but **WITHOUT ANY WARRANTY**; without even the implied warranty of **MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE**. See the GNU General Public License for more details.
+
+Prima di modificare un'installazione Skyrim esistente, è consigliabile conservare una copia dei salvataggi e della configurazione delle mod.
 
 ---
 
-# Completionist NG
-
-**Completionist - Skyrim Completion Tracker (NG)**
-
-[![Nexus Mods](https://img.shields.io/badge/Nexus%20Mods-Completionist-orange?logo=nexusmods)](https://www.nexusmods.com/skyrimspecialedition/mods/46358)
-[![GitHub](https://img.shields.io/badge/GitHub-Source%20Code-black?logo=github)](https://github.com/Faen668/Completionist-NG)
-
-Completionist is a comprehensive completion-tracking framework for **The Elder Scrolls V: Skyrim Special Edition**.
-
-It provides an in-game interface for tracking quests, items and other collectible or completion-related content across Skyrim, the official DLC and supported third-party mods.
-
-The **NG** version is the native-code continuation of Completionist, built using modern Skyrim modding technologies and **CommonLibSSE-NG**.
-
----
-
-## Features
-
-### Quest Tracking
-
-Completionist automatically tracks your progress through supported quests and presents completion information through the in-game MCM.
-
-This includes support for:
-
-* Main quests
-* Side quests
-* DLC quests
-* Radiant and repeatable quests
-* Supported mod-added quests
-* Quest stages that do not use conventional completion states
-
-Where necessary, Completionist records relevant quest-stage information so that quests which stop rather than formally complete can still be tracked accurately.
-
-### Item & Collectible Tracking
-
-Completionist provides tracking for a wide range of collectible content, including:
-
-* Books
-* Spell tomes
-* Weapons
-* Armour
-* Unique items
-* Collectibles
-* Other supported completion-related content
-
-The tracking system is designed to provide a single place to monitor overall completion progress.
-
-### MCM Integration
-
-Completionist provides extensive **SkyUI MCM** integration, allowing you to configure and monitor your completion progress directly in-game.
-
-### Inventory Integration
-
-Completionist can integrate with the player's inventory and provide configurable visual indicators for tracked collectables.
-
-### Dynamic Crosshair Tags
-
-The Dynamic Crosshair Tags system can identify tracked items while they are being targeted.
-
-The system is configurable, including:
-
-* Tag text
-* Tag colour
-* Category visibility
-* Display behaviour
-
-### Extensive Mod Support
-
-Completionist supports tracking content from a large number of popular Skyrim mods.
-
-The project is designed so that additional tracking data can be maintained and extended without requiring the core tracking system to be rewritten.
-
----
-
-## Requirements
-
-The following are required:
-
-* **Skyrim Special Edition / Anniversary Edition**
-* **SKSE64**
-* **Address Library for SKSE Plugins**
-* **PapyrusUtil SE**
-* **SkyUI**
-
-See the [Nexus Mods page](https://www.nexusmods.com/skyrimspecialedition/mods/46358) for the current supported versions and installation information.
-
-### Recommended
-
-Completionist was originally developed and designed with **Dear Diary - Dark Mode** in mind.
-
-Completionist should work with other UI configurations, but UI mods based on Dear Diary Dark Mode may provide the best visual presentation for the MCM.
-
----
-
-## Installation
-
-Install Completionist using your preferred mod manager.
-
-Ensure that all required dependencies are installed and that **SKSE64** is being used to launch Skyrim.
-
-After installation, launch the game and allow Completionist to initialise.
-
-The Completionist MCM can then be accessed through SkyUI.
-
-For the latest release and installation instructions, visit:
-
-**Nexus Mods:**
-https://www.nexusmods.com/skyrimspecialedition/mods/46358
-
----
-
-## Development
-
-Completionist NG is a C++ SKSE plugin project.
-
-The project uses:
-
-* C++
-* CommonLibSSE-NG
-* CMake
-* vcpkg
-* SKSE
-* Address Library
-* Skyrim's native runtime interfaces
-
-Source code is available on GitHub:
-
-https://github.com/Faen668/Completionist-NG
-
-### Building
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Faen668/Completionist-NG.git
-cd Completionist-NG
-```
-
-Configure and build the project using the supplied CMake configuration.
-
-CommonLibSSE-NG is used as a build dependency and provides the native Skyrim interfaces required by the plugin.
-
----
-
-## Contributing
-
-Bug reports, improvements and pull requests are welcome.
-
-When submitting an issue, please provide as much information as possible, including:
-
-* Skyrim runtime version
-* SKSE version
-* Completionist version
-* Relevant mod list
-* Crash logs, if applicable
-* Steps required to reproduce the issue
-
-Pull requests should be focused and should preserve the existing project structure and coding conventions.
-
----
-
-## Credits
-
-Completionist would not be possible without the work of the Skyrim modding community.
-
-### CommonLibSSE-NG
-
-Completionist NG uses **CommonLibSSE-NG** as its native Skyrim development framework.
-
-https://github.com/alandtse/CommonLibSSE-NG
-
-### SKSE
-
-The Skyrim Script Extender provides the runtime extension framework used by Completionist.
-
-https://skse.silverlock.org/
-
-### Address Library
-
-Address Library provides runtime-independent addresses used by native Skyrim plugins.
-
-### PapyrusUtil
-
-PapyrusUtil provides additional scripting functionality used by Completionist.
-
-### SkyUI
-
-SkyUI provides the MCM framework used by Completionist.
-
----
-
-## Licence
-
-Completionist NG is released under the:
-
-**GNU General Public License v3.0 or later (GPL-3.0-or-later)**
-
-with the **Modding Exception** and **GPL-3.0 Linking Exception (with Corresponding Source)**.
-
-See [`LICENSE`](LICENSE) and [`EXCEPTIONS.md`](EXCEPTIONS.md) for the complete licence terms.
-
-This licensing arrangement follows the licensing model used by CommonLibSSE-NG.
-
-In particular, the Modding Exception permits the software to be linked with the proprietary code it is intended to modify, including Skyrim, while retaining the GPL requirements for the applicable open-source code.
-
----
-
-## Distribution & Mod Permissions
-
-The source code of Completionist NG is licensed according to the terms described above.
-
-The licence applies to the **source code of the project**. It does not automatically grant permission to redistribute Bethesda's game assets, third-party assets, or other copyrighted material included or referenced by the project.
-
-Third-party assets remain subject to their respective licences and permissions.
-
-For the latest user-facing distribution permissions, please also refer to the Permissions and Credits section of the [Nexus Mods page](https://www.nexusmods.com/skyrimspecialedition/mods/46358).
-
----
-
-## Disclaimer
-
-Completionist NG is provided **"AS IS"**, without warranty of any kind, express or implied.
-
-The authors and contributors are not responsible for loss of save data, corrupted saves, crashes, incompatibilities, or other damage resulting from the use of this software.
-
-Always maintain appropriate backups of your Skyrim installation and save files.
-
----
-
-## Project Links
-
-* **Nexus Mods:** https://www.nexusmods.com/skyrimspecialedition/mods/46358
-* **GitHub:** https://github.com/Faen668/Completionist-NG
-* **CommonLibSSE-NG:** https://github.com/alandtse/CommonLibSSE-NG
-* **SKSE:** https://skse.silverlock.org/
-
----
-
-**Completionist NG**
-Copyright © 2026 Faen90 / Faen668
-
-Licensed under the GNU General Public License v3.0 or later, with the applicable modding and linking exceptions.
+**Completionist NG è il progetto originale di Faen90 / Faen668. Questo repository documenta il fork sorgente relativo alla localizzazione italiana di falker47.**
