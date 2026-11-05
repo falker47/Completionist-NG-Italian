@@ -1,0 +1,82 @@
+name: Documentation and security checks
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  readme-validation:
+    name: README validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Check out the tested commit
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Check README structure, license notices and local links
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from urllib.parse import unquote, urlparse
+          import re
+
+          readme = Path('README.md')
+          if not readme.is_file():
+              raise SystemExit('README.md is missing')
+          content = readme.read_text(encoding='utf-8-sig')
+          if not content.strip() or not content.startswith('# '):
+              raise SystemExit('README.md needs a title and nonempty content')
+          if not content.endswith('\n'):
+              raise SystemExit('README.md needs a final newline')
+          if content.count(chr(96) * 3) % 2:
+              raise SystemExit('README.md contains an unclosed fenced code block')
+          if re.search(r'[\u202a-\u202e\u2066-\u2069]', content):
+              raise SystemExit('README.md contains bidirectional control characters')
+          for notice in ('GPL-3.0-or-later', 'LICENSE', 'EXCEPTIONS.md'):
+              if notice not in content:
+                  raise SystemExit(f'Missing licensing notice: {notice}')
+          if not Path('LICENSE').is_file() or 'GNU GENERAL PUBLIC LICENSE' not in Path('LICENSE').read_text(encoding='utf-8'):
+              raise SystemExit('GPL license text is missing')
+          if not Path('EXCEPTIONS.md').is_file():
+              raise SystemExit('License exceptions file is missing')
+          exceptions = Path('EXCEPTIONS.md').read_text(encoding='utf-8')
+          if 'Modding Exception' not in exceptions or 'GPL-3.0 Linking Exception' not in exceptions:
+              raise SystemExit('License exceptions are missing')
+          links = re.findall(r'(?<!!)\[[^\]\n]+\]\(([^)\n]+)\)', content)
+          for target in links:
+              url = urlparse(target.strip())
+              if url.scheme:
+                  if url.scheme not in ('https', 'http', 'mailto'):
+                      raise SystemExit(f'Unsupported link scheme: {target}')
+                  continue
+              if target.startswith('#'):
+                  continue
+              path = Path(unquote(url.path))
+              if path.is_absolute() or '..' in path.parts or not path.is_file():
+                  raise SystemExit(f'Broken or unsafe local README link: {target}')
+          print(f'README checks passed ({len(links)} Markdown links; tested commit from checkout)')
+          PY
+
+  secret-scan:
+    name: Gitleaks secret scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Check for exposed credentials
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: 'false'
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: 'false'
